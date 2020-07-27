@@ -3,6 +3,7 @@
   first_bizday_month.py
   * trying to find the first business day of the month...
   21 july 2020 --- bulent0sahin@gmail.com
+  27 july 2020 <--- some git updates
 """
 
 import sys
