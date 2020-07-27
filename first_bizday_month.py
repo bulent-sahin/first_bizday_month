@@ -2,18 +2,24 @@
 """
   first_bizday_month.py
   * trying to find the first business day of the month...
-  21 july 2020 --- bulent0sahin@gmail.com 
+  21 july 2020 --- bulent0sahin@gmail.com
 """
 
 import sys
 import calendar
 import datetime
 import holidays
-"""
-  sudo pip3 install holidays
-  sudo pip3 install -U hijri-converter
-"""
-def main(year, month):
+
+def main():
+    """
+      main method
+    """
+    year = datetime.date.today().year
+    month = datetime.date.today().month
+    if len(sys.argv) == 3:
+        year = int(sys.argv[1])
+        month = int(sys.argv[2])
+
     day_name = list(calendar.day_name)
     tr_holidays = holidays.Turkey(years=year)
     first_day = 1
@@ -28,16 +34,11 @@ def main(year, month):
         my_realdate += datetime.timedelta(days=1)
 
     week_day = my_realdate.weekday()
-    print("the first business day of the month:",day_name[week_day], my_realdate.strftime("%d-%m-%Y"))
+    print("the first business day of the month:", day_name[week_day],\
+           my_realdate.strftime("%d-%m-%Y"))
     print("use: first_bizday_month.py <year> <month>")
     return 0
 
 
 if __name__ == "__main__":
-    year = datetime.date.today().year
-    month = datetime.date.today().month
-    if len(sys.argv) == 3:
-        year = int(sys.argv[1])
-        month = int(sys.argv[2])
-
-    main(year, month)
+    main()
